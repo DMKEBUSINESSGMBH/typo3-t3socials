@@ -57,7 +57,18 @@ class tx_t3socials_network_twitter_MessageBuilder
 	 */
 	protected function getMaxContentLength(tx_t3socials_models_IMessage $message) {
 		$url = trim($message->getUrl());
-		return $url ? 120 : 140;
+		// return $url ? 120 : 140;
+		return $url ? 115 : 140; // every url is always 23 chars + delimiter (space and doublepoint)
+	}
+
+	/**
+	 * Liefert den text, der angehängt werden soll, wenn der Content zu kurz ist.
+	 *
+	 * @param tx_t3socials_models_IMessage $message
+	 * @return string
+	 */
+	protected function getCropAfterString(tx_t3socials_models_IMessage $message) {
+		return '...';
 	}
 
 	/**

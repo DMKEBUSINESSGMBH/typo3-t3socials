@@ -100,11 +100,15 @@ class tx_t3socials_network_MessageBuilder {
 			// wenn noch Platz ist, erweitern wir den titel um den content
 			// wir adden den Content zum Titel
 			if ($maxChars > 0) {
+				// only crop if maxChars is set, else publish full text
 				$content = $this->cropText($content, $charsAvailable, $this->getCropAfterString($message));
 			}
-			// add content delimiter if necessary
-			$out .= empty($out) ? '' : $contentDelimiter;
-			$out .= $content;
+			if ($this->getStrLen($content) > 0 && $charsAvailable > 0) {
+				// only add content and delimiter, if there is place and avoid only delimiter without content
+				$additionalContent = empty($out) ? '' : $contentDelimiter;
+				$additionalContent .= $content;
+				$out .= $additionalContent;
+			}
 		}
 
 		// ggf url hinzufügen
@@ -176,16 +180,23 @@ class tx_t3socials_network_MessageBuilder {
 	 * @return string
 	 */
 	protected function cropText($text, $chars, $afterstring) {
-		if ($this->getStrLen($text) < $chars) {
+		if ($this->getStrLen($text) <= $chars) {
+			// do nothing if text is enough short
 			return $text;
 		}
 		$crop2space = TRUE;
-		// Kürzen
-		$text = substr($text, 0, ($chars - $this->getStrLen($afterstring)));
+		// make place for afterstring
+		$remainingChars = $chars - $this->getStrLen($afterstring);
+		if ($remainingChars <= 0) {
+			// if no place, remove full text part
+			return '';
+		}
+		$text = substr($text, 0, $remainingChars);
+		// search last space to split there
 		$truncAt = strrpos($text, ' ');
 		$text = ($truncAt && $crop2space)
-			? substr($text, 0, $truncAt) . $afterstring
-			: $text . $afterstring;
+			? substr($text, 0, $truncAt) . $afterstring // cut to next word
+			: $text . $afterstring; // if no words availabe, use hard cut
 		return $text;
 	}
 

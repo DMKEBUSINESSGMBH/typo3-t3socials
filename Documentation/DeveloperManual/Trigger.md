@@ -134,7 +134,7 @@ class tx_t3socials_trigger_news_MessageBuilder
       tx_t3socials_models_Network $network,
       tx_t3socials_models_TriggerConfig $trigger
    ) {
-      $confId = $network->getNetwork() . '.' . $trigger->getTrigerId() . '.';
+      $confId = $network->getNetwork() . '.' . $trigger->getTriggerId() . '.';
 
       tx_rnbase::load('tx_rnbase_util_Misc');
       $tsfe = tx_rnbase_util_Misc::prepareTSFE();

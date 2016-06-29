@@ -36,10 +36,11 @@ tx_rnbase::load('tx_t3socials_trigger_MessageBuilder');
  *
  *  Working Example:
 	// call publish message api from t3socials
-	/** @var tx_t3socials_api_publish $t3Publish * /
 	tx_rnbase::load('tx_t3socials_api_publish');
-	$errors = tx_t3socials_api_publish::publishMessage('head', 'intro', 'message', 'url.ch', array(1,2));
-	var_dump($errors);
+	/** @var tx_t3socials_api_publish $t3Publish *
+	$t3Publish = t3lib_div::makeInstance('tx_t3socials_api_publish');
+	$t3Publish->publishMessage($head, $intro, $message, $singleLink, $uid, 'tx_koseminars_seminar');
+	$content .= $t3Publish->getErrorsHTML();
  *
  */
 class tx_t3socials_api_publish {

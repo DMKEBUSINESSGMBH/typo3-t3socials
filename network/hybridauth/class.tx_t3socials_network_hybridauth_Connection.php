@@ -107,7 +107,11 @@ abstract class tx_t3socials_network_hybridauth_Connection
 	public function setUserStatus($message) {
 		$provider = $this->getProvider();
 		try {
-			$provider->setUserStatus($message);
+			$pageId = trim($this->getConfigData('pageId'));
+			if (strlen($pageId) == 0) {
+				$pageId = null;
+			}
+			$provider->setUserStatus($message, $pageId);
 		} catch (Exception $e) {
 			// try to catch error from responce
 			$last = $provider->api()->last_response;

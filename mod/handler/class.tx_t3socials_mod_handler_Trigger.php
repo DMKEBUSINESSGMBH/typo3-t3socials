@@ -117,7 +117,7 @@ class tx_t3socials_mod_handler_Trigger
 	 */
 	protected function getMessage() {
 		$formData = $this->getFormData();
-		$type = $this->getTriggerConfig() ? $this->getTriggerConfig()->getTrigerId() : 'manually';
+		$type = $this->getTriggerConfig() ? $this->getTriggerConfig()->getTriggerId() : 'manually';
 		$message = tx_t3socials_models_Message::getInstance($type);
 		$message->setHeadline($formData->getHeadline());
 		$message->setIntro($formData->getIntro());

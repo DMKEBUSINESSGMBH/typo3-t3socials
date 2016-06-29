@@ -85,7 +85,6 @@ class tx_t3socials_util_Link {
 		foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tstemplate.php']['linkData-PostProc'] as $funcRef) {
 			tx_rnbase_util_Misc::callUserFunction($funcRef, $params, $templateService);
 		}
-
 		return $ld['totalURL'];
 	}
 

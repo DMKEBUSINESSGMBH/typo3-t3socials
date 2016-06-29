@@ -79,6 +79,7 @@ if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/t3socia
 }
 
 // Make instance:
+/** @var tx_t3socials_mod_Module $SOBE */
 $SOBE = tx_rnbase::makeInstance('tx_t3socials_mod_Module');
 $SOBE->init();
 

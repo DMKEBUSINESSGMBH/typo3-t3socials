@@ -181,3 +181,20 @@ tx_t3socials_trigger_Config::registerTrigger(
    'tx_t3socials_trigger_news_TriggerConfig'
 );
 ~~~~
+
+Manuelle API
+------------
+Nebst über Triggern können Nachrichten ebenfalls manuell versendet werden (zum Beispiel, wenn man aus dem Frontend direkt Nachrichten veröffentlichen will).
+Die API versendet auf allen Netzwerken die für den Autosend konfiguriert sind die Nachricht.
+
+Analag zum gewöhnlichen Autosend über die Hooks im Backend, werden auch hier redundante Posts verhindert, in dem UID und die TABLE definiert werden und auf Eindeutigkeit überprüft werden.
+
+~~~~ {.sourceCode .php}
+// call publish message api from t3socials
+tx_rnbase::load('tx_t3socials_api_publish');
+/** @var tx_t3socials_api_publish $t3Publish */
+$t3Publish = t3lib_div::makeInstance('tx_t3socials_api_publish');
+$t3Publish->publishMessage($head, $intro, $message, $singleLink, [$uid], '[TABLE]');
+// show status if necessary
+$content .= $t3Publish->getErrorsHTML();
+~~~~

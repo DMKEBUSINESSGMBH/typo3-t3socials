@@ -163,13 +163,13 @@ class tx_t3socials_api_publish {
 			$errors = $this->errors;
 		}
 		if (count($errors) > 0) {
-			$html .= '<div class="t3social-status t3social-error"><span class="title">Fehler beim Veröffentlichen auf den Sozialen Kanälen</span><ul>';
+			$html .= '<div class="t3social-status t3social-error"><span class="title">There was an error. Message couldn\'t be published.</span><ul>';
 			foreach ($errors as $errorCode => $errorText) {
 				$html .= '<li>'.$errorText.' (Code: "'.$errorCode.'")</li>';
 			}
 			$html .= '</ul></div>';
 		} else {
-			$html .= '<div class="t3social-status t3social-success"><span class="title">Meldung wurde erfolgreich auf Facebook und Twitter veröffentlicht.</span></div>';
+			$html .= '<div class="t3social-status t3social-success"><span class="title">Message successfully published on defined social media channels.</span></div>';
 		}
 		return $html;
 	}

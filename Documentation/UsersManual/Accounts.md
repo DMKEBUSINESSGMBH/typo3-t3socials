@@ -53,7 +53,9 @@ Die Konfiguration eines Accounts für Xing ist identisch zu einrichtung-twitter
 Einrichtung für Facebook
 ------------------------
 
-Die Konfiguration eines Accounts für Facebook ist identisch zu einrichtung-twitter
+Die Konfiguration eines Accounts für Facebook (FB) ist identisch zu einrichtung-twitter
+Zusätzlich kann die pageId einer FB-Page definiert werden, so werden die Posts auf dieser Seite veröffentlicht
+Wird keine pageId definiert, erfolgt der Post gewöhnlich auf der Timeline des Users.
 
 Einrichtung für pushd
 ---------------------

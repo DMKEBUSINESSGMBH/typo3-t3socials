@@ -75,13 +75,20 @@ class tx_t3socials_network_HybridAuth {
 	 */
 	private static function loadHybridAuth() {
 		if (!class_exists('Hybrid_Auth')) {
+
+			$hybridAuthLibPath = tx_rnbase_configurations::getExtensionCfgValue('t3socials', 'hybridAuthLibPath');
+			if (!$hybridAuthLibPath) {
+				// for compatibility reasons (before this settings could be set)
+				$hybridAuthLibPath = 'lib/hybridauth-2.6.0/hybridauth/Hybrid';
+			}
+
 			require_once tx_rnbase_util_Extensions::extPath(
 				't3socials',
-				'/lib/hybridauth/Hybrid/Auth.php'
+				'/'.$hybridAuthLibPath.'/Auth.php'
 			);
 			require_once tx_rnbase_util_Extensions::extPath(
 				't3socials',
-				'/lib/hybridauth/Hybrid/Endpoint.php'
+				'/'.$hybridAuthLibPath.'/Endpoint.php'
 			);
 		}
 	}

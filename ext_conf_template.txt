@@ -1,0 +1,2 @@
+# cat=basic; type=string; label=Path within t3_socials extension to the hybridAuth lib (into the directory who contains Auth.php and Endpoint.php). Default. lib/hybridauth-2.6.0/hybridauth/Hybrid
+hybridAuthLibPath = lib/hybridauth-2.6.0/hybridauth/Hybrid

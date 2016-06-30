@@ -211,6 +211,20 @@ class tx_t3socials_srv_Network
 	}
 
 	/**
+	 * Liefert alle Netzwerke welche das Autosend-Flag haben.
+	 *
+	 * @param null|bool $autosend
+	 * @return array
+	 */
+	public function findAccountsWithAutosend($autosend = true) {
+		$fields = $options = array();
+		// @TODO: das funktioniert nur durch einen Bug in rn_base.
+		// Bei OP_INSET_INT wird aktuell keine Typumwandlung zum Integer gemacht.
+		$fields['NETWORK.autosend'][OP_EQ_INT] = $autosend ? 1 : 0;
+		return $this->search($fields, $options);
+	}
+
+	/**
 	 * Liefert alle Accounts eines Typs
 	 *
 	 * @param string $types
